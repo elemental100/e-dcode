@@ -11,7 +11,7 @@ function App() {
     <div>
       <Navbar/>
       <ShipCipher/>
-      <Monoalphabetic value = {pText} onValueChange = {setcText}/>
+      {/* <Monoalphabetic value = {pText} onValueChange = {setcText}/> */}
     </div>
   );
 }
