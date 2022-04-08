@@ -1,10 +1,10 @@
 function Navbar() {
+    
     return(
         <h1>
-            Navbar2
+            Navbar
         </h1>
     );
-
 }
 
 export default Navbar;
