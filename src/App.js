@@ -11,8 +11,8 @@ function App() {
     <div>
       <Navbar/>
       <ShipCipher/>
-      <Columnar/>
-      {/* <Monoalphabetic/> */}
+      {/* <Columnar/> */}
+      <Monoalphabetic/>
     </div>
   );
 }
