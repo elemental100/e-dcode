@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Monoalphabetic() {
+function Columnar() {
   const [cText, setCtext] = useState("");
   const [pTextInput, setPTextInput] = useState("");
   const [keytInput, setKeyInput] = useState(0);
@@ -83,4 +83,4 @@ function Monoalphabetic() {
   );
 }
 
-export default Monoalphabetic;
+export default Columnar;

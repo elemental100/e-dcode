@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import './App.css';
+import Columnar from './Component/Columnar/Columnar';
 import Monoalphabetic from './Component/Monoalphabetic/Monoalphabetic';
 import Navbar from './Component/Navbar/Navbar';
 import ShipCipher from './Component/ShipCipher/ShipCipher';
 
 function App() {
 
-  const [pText , setcText] = useState('');
   return (
     <div>
       <Navbar/>
       <ShipCipher/>
-      <Monoalphabetic value = {pText} onValueChange = {setcText}/>
+      <Columnar/>
+      {/* <Monoalphabetic/> */}
     </div>
   );
 }
