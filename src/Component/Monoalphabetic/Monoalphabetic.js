@@ -15,7 +15,6 @@ function Monoalphabetic() {
         let newT = ((asciiText + key) % 26)+65;
         arr.push(String.fromCharCode(newT))
     }
-    console.log(arr)
     setCtext(arr);
   }
 
@@ -45,7 +44,7 @@ function Monoalphabetic() {
       />
       <h1>Key</h1>
       <input
-        type="number"
+        type="text"
         placeholder="Key"
         value={keytInput}
         onInput={(event) => setKeyInput(event.target.value)}

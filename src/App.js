@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Box } from '@chakra-ui/react';
 import './App.css';
 import Columnar from './Component/Columnar/Columnar';
@@ -11,7 +10,8 @@ function App() {
   return (
     <Box minHeight="100vh" bgColor={"blue.400"}>
       <Navbar/>
-      <Monoalphabetic/>
+      {/* <Monoalphabetic/> */}
+      <Columnar/>
     </Box>
     
   );
