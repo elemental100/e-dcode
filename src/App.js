@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Box } from '@chakra-ui/react';
 import './App.css';
 import Monoalphabetic from './Component/Monoalphabetic/Monoalphabetic';
 import Navbar from './Component/Navbar/Navbar';
@@ -8,11 +9,9 @@ function App() {
 
   const [pText , setcText] = useState('');
   return (
-    <div>
-      <Navbar/>
-      <ShipCipher/>
-      {/* <Monoalphabetic value = {pText} onValueChange = {setcText}/> */}
-    </div>
+    <Box minHeight="100vh" bgColor={"blue.400"}>
+      <Navbar></Navbar>
+    </Box>
   );
 }
 
