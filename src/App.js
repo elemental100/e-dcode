@@ -10,8 +10,8 @@ function App() {
   return (
     <Box minHeight="100vh" bgColor={"blue.400"}>
       <Navbar/>
-      {/* <Monoalphabetic/> */}
-      <Columnar/>
+      <ShipCipher/>
+      <Monoalphabetic/>
     </Box>
     
   );
