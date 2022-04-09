@@ -11,7 +11,6 @@ import {
     Popover,
     PopoverTrigger,
     PopoverContent,
-    useColorModeValue,
     useBreakpointValue,
     useDisclosure,
   } from '@chakra-ui/react';
@@ -20,6 +19,7 @@ import {
     CloseIcon,
     ChevronDownIcon,
     ChevronRightIcon,
+    UnlockIcon
   } from '@chakra-ui/icons';
   
   export default function Navbar() {
@@ -28,14 +28,13 @@ import {
     return (
       <Box>
         <Flex
-          bg={useColorModeValue('white', 'gray.800')}
-          color={useColorModeValue('gray.600', 'white')}
+          bg={'black'}
           minH={'60px'}
           py={{ base: 2 }}
           px={{ base: 4 }}
           borderBottom={1}
           borderStyle={'solid'}
-          borderColor={useColorModeValue('gray.200', 'gray.900')}
+          borderColor={'green.200'}
           align={'center'}>
           <Flex
             flex={{ base: 1, md: 'auto' }}
@@ -44,18 +43,20 @@ import {
             <IconButton
               onClick={onToggle}
               icon={
-                isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+                isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} color={'green.300'}/>
               }
               variant={'ghost'}
               aria-label={'Toggle Navigation'}
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+          
             <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
-              color={useColorModeValue('gray.800', 'white')}>
-              Logo
+              color={'green.300'}>
+              <UnlockIcon w={4} h={4} mr={1}/>
+              Cryptography
             </Text>
   
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -91,9 +92,9 @@ import {
   }
   
   const DesktopNav = () => {
-    const linkColor = useColorModeValue('gray.600', 'gray.200');
-    const linkHoverColor = useColorModeValue('gray.800', 'white');
-    const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+    const linkColor = 'white';
+    const linkHoverColor = 'green.100';
+    const popoverContentBgColor = 'white';
   
     return (
       <Stack direction={'row'} spacing={4}>
@@ -145,12 +146,13 @@ import {
         display={'block'}
         p={2}
         rounded={'md'}
-        _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+        _hover={{ bg: 'gray.100' }}>
         <Stack direction={'row'} align={'center'}>
           <Box>
             <Text
               transition={'all .3s ease'}
-              _groupHover={{ color: 'pink.400' }}
+              color={'black'}
+              _groupHover={{ color: 'green.300' }}
               fontWeight={500}>
               {label}
             </Text>
@@ -164,7 +166,7 @@ import {
             justify={'flex-end'}
             align={'center'}
             flex={1}>
-            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+            <Icon color={'green.300'} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
       </Link>
@@ -174,7 +176,7 @@ import {
   const MobileNav = () => {
     return (
       <Stack
-        bg={useColorModeValue('white', 'gray.800')}
+        bg={'white'}
         p={4}
         display={{ md: 'none' }}>
         {NAV_ITEMS.map((navItem) => (
@@ -200,7 +202,7 @@ import {
           }}>
           <Text
             fontWeight={600}
-            color={useColorModeValue('gray.600', 'gray.200')}>
+            color={'black'}>
             {label}
           </Text>
           {children && (
@@ -208,6 +210,7 @@ import {
               as={ChevronDownIcon}
               transition={'all .25s ease-in-out'}
               transform={isOpen ? 'rotate(180deg)' : ''}
+              color={'green.400'}
               w={6}
               h={6}
             />
@@ -220,7 +223,7 @@ import {
             pl={4}
             borderLeft={1}
             borderStyle={'solid'}
-            borderColor={useColorModeValue('gray.200', 'gray.700')}
+            borderColor={'gray.200'}
             align={'start'}>
             {children &&
               children.map((child) => (
@@ -282,7 +285,7 @@ import {
       ],
     },
     {
-      label: 'Unknown Cipher',
+      label: 'RSA',
       children: [
         {
           label: 'Encrypt',
