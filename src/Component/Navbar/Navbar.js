@@ -270,7 +270,7 @@ import {
       ],
     },
     {
-      label: 'Columnar Transposition',
+      label: 'Rail fence',
       children: [
         {
           label: 'Encrypt',
