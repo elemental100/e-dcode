@@ -1,36 +1,41 @@
 import { useState } from "react";
 
-function Monoalphabetic() {
+function Columnar() {
   const [cText, setCtext] = useState("");
   const [pTextInput, setPTextInput] = useState("");
   const [keytInput, setKeyInput] = useState(0);
+  const [modInput, setMOdInput] = useState(0);
 
   const arr = [];
 
-  function onEncodeClick(planText = "", keyText =0) {
+  function onEncodeClick(planText = "", modText = 0, keyText =0) {
     let key = parseInt(keyText);
+    let mod = parseInt(modText);
     let text = planText.replace(/\s+/g, '');
     for (let i = 0; i < text.length; i++) {
         let asciiText = (text.toUpperCase().charCodeAt(i))-65;
-        let newT = ((asciiText + key) % 26)+65;
+        let newT = ((asciiText + key) % mod)+65;
         arr.push(String.fromCharCode(newT))
     }
     console.log(arr)
     setCtext(arr);
   }
 
-  function onDecodeClick(planText = "", keyText =0) {
+  function onDecodeClick(planText = "", modText = 0, keyText =0) {
     let key = parseInt(keyText);
+    let mod = parseInt(modText);
     let text = planText.replace(/\s+/g, '');
     for (let i = 0; i < text.length; i++) {
         let asciiText = (text.toUpperCase().charCodeAt(i))-65;
         if(asciiText < key){
-          let newT = ((asciiText - key) + 26) + 65;
+          let newT = ((asciiText + mod) - key) + 65;
+          console.log("test")
           arr.push(String.fromCharCode(newT))
         }else{
           let newT = (asciiText - key) + 65;
           arr.push(String.fromCharCode(newT))
-        }   
+        }
+        
     }
     setCtext(arr);
   }
@@ -50,17 +55,24 @@ function Monoalphabetic() {
         value={keytInput}
         onInput={(event) => setKeyInput(event.target.value)}
       />
+      <h1>Mod</h1>
+      <input
+        type="number"
+        placeholder="Mod"
+        value={modInput}
+        onInput={(event) => setMOdInput(event.target.value)}
+      />
       <div>
         <button
           onClick={() => {
-            onEncodeClick(pTextInput,keytInput);
+            onEncodeClick(pTextInput,modInput,keytInput);
           }}
         >
           Encode
         </button>
         <button
           onClick={() => {
-            onDecodeClick(pTextInput,keytInput);
+            onDecodeClick(pTextInput,modInput,keytInput);
           }}
         >
           Decode
@@ -71,4 +83,4 @@ function Monoalphabetic() {
   );
 }
 
-export default Monoalphabetic;
+export default Columnar;
