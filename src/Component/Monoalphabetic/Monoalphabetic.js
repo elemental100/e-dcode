@@ -43,7 +43,7 @@ function Monoalphabetic() {
       />
       <h1>Key</h1>
       <input
-        type="text"
+        type="number"
         placeholder="Key"
         value={keytInput}
         onInput={(event) => setKeyInput(event.target.value)}
