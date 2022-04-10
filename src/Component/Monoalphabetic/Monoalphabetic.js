@@ -5,31 +5,30 @@ function Monoalphabetic() {
   const [pTextInput, setPTextInput] = useState("");
   const [keytInput, setKeyInput] = useState(0);
 
-  const arr = [];
+  let arr = [];
 
-  function onEncodeClick(planText = "", keyText =0) {
+  function onEncodeClick(planText = "", keyText = 0) {
     let key = parseInt(keyText);
-    let text = planText.replace(/\s+/g, '');
+    let text = planText.replace(/\s+/g, "");
     for (let i = 0; i < text.length; i++) {
-        let asciiText = (text.toUpperCase().charCodeAt(i))-65;
-        let newT = ((asciiText + key) % 26)+65;
-        arr.push(String.fromCharCode(newT))
+      let asciiText = text.toUpperCase().charCodeAt(i) - 65;
+      let newT = ((asciiText + key) % 26) + 65;
+      arr.push(String.fromCharCode(newT));
     }
+    console.log(arr);
     setCtext(arr);
   }
 
-  function onDecodeClick(planText = "", keyText =0) {
+  function onDecodeClick(planText = "", keyText = 0) {
     let key = parseInt(keyText);
-    let text = planText.replace(/\s+/g, '');
+    let text = planText.replace(/\s+/g, "");
     for (let i = 0; i < text.length; i++) {
-        let asciiText = (text.toUpperCase().charCodeAt(i))-65;
-        if(asciiText < key){
-          let newT = ((asciiText - key) + 26) + 65;
-          arr.push(String.fromCharCode(newT))
-        }else{
-          let newT = (asciiText - key) + 65;
-          arr.push(String.fromCharCode(newT))
-        }   
+      let asciiText = text.toUpperCase().charCodeAt(i) - 65 - key;
+      while (asciiText < 0) {
+        asciiText += 26;
+      }
+      let newT = asciiText + 65;
+      arr.push(String.fromCharCode(newT));
     }
     setCtext(arr);
   }
@@ -52,14 +51,14 @@ function Monoalphabetic() {
       <div>
         <button
           onClick={() => {
-            onEncodeClick(pTextInput,keytInput);
+            onEncodeClick(pTextInput, keytInput);
           }}
         >
           Encode
         </button>
         <button
           onClick={() => {
-            onDecodeClick(pTextInput,keytInput);
+            onDecodeClick(pTextInput, keytInput);
           }}
         >
           Decode
