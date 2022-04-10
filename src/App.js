@@ -8,7 +8,7 @@ import ShipCipher from "./Component/ShipCipher/ShipCipher";
 
 function App() {
   return (
-    <Box minHeight="100vh" bgColor={"blue.400"}>
+    <Box minHeight="100vh" bgColor={'gray.900'}>
       <Router>
         <Navbar />
         <Routes>

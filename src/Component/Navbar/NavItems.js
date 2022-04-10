@@ -6,29 +6,29 @@ const NAV_ITEMS = [
     label: "Shift Cipher",
     children: [
       {
-        label: "Encrypt",
-        subLabel: "Encode a plain text to shift cipher",
+        label: "เข้ารหัส",
+        subLabel: "ทำการเข้ารหัสข้อมูลแบบ Shift cipher",
         href: "ShipCipher",
       },
       {
-        label: "Decrypt",
-        subLabel: "Decode a shift cipher to plain text",
-        href: "ShipCipher",
+        label: "ข้อมูลเพิ่มเติม",
+        subLabel: "ศึกษาข้อมูลของ Shift cipher เพิ่มเติม",
+        href: "https://th.wikipedia.org/wiki/รหัสซีซาร์",
       },
     ],
   },
   {
-    label: "Monoalphabetic Substitution",
+    label: "Monoalphabetic",
     children: [
       {
-        label: "Encrypt",
-        subLabel: "Encode a plain text to shift cipher",
+        label: "เข้ารหัส",
+        subLabel: "ทำการเข้ารหัสข้อมูลแบบ Monoalphabetic",
         href: "Monoalphabetic",
       },
       {
-        label: "Decrypt",
-        subLabel: "Decode a shift cipher to plain text",
-        href: "Monoalphabetic",
+        label: "ข้อมูลเพิ่มเติม",
+        subLabel: "ศึกษาข้อมูลของ Monoalphabetic เพิ่มเติม",
+        href: "https://en.wikipedia.org/wiki/Substitution_cipher",
       },
     ],
   },
@@ -36,14 +36,14 @@ const NAV_ITEMS = [
     label: "Rail fence",
     children: [
       {
-        label: "Encrypt",
-        subLabel: "Encode a plain text to shift cipher",
+        label: "เข้ารหัส",
+        subLabel: "ทำการเข้ารหัสข้อมูลแบบ Rail fence",
         href: "#",
       },
       {
-        label: "Decrypt",
-        subLabel: "Decode a shift cipher to plain text",
-        href: "#",
+        label: "ข้อมูลเพิ่มเติม",
+        subLabel: "ศึกษาข้อมูลของ Rail fence เพิ่มเติม",
+        href: "https://en.wikipedia.org/wiki/Rail_fence_cipher",
       },
     ],
   },
@@ -51,14 +51,14 @@ const NAV_ITEMS = [
     label: "RSA",
     children: [
       {
-        label: "Encrypt",
-        subLabel: "Encode a plain text to shift cipher",
+        label: "เข้ารหัส",
+        subLabel: "ทำการเข้ารหัสข้อมูลแบบ RSA",
         href: "#",
       },
       {
-        label: "Decrypt",
-        subLabel: "Decode a shift cipher to plain text",
-        href: "#",
+        label: "ข้อมูลเพิ่มเติม",
+        subLabel: "ศึกษาข้อมูลของ RSA เพิ่มเติม",
+        href: "https://th.wikipedia.org/wiki/อาร์เอสเอ#:~:text=อาร์เอสเอ%20(อังกฤษ%3A%20RSA)%20คือขั้น,เชื่อว่ามีความปลอดภัย",
       },
     ],
   },
