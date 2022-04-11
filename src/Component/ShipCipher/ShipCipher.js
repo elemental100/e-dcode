@@ -43,8 +43,8 @@ function ShipCipher() {
 
   return (
     <Flex justify={'center'} m={'2rem'}>
-      <Stack direction='row' spacing={4} align='start'>
-        <Box name='leftPanel' maxW={'md'} minH={'350px'} bg='gray.700' w='100%' p={5} color='white' borderRadius='lg' overflow='hidden'
+      <Stack direction={{ base: 'column', md: 'row' }} spacing={4} align='start'>
+        <Box className='leftPanel' maxW={'md'} minH={'350px'} bg='gray.700' w='100%' p={5} color='white' borderRadius='lg' overflow='hidden'
           display='block' boxShadow='2xl'>
           <Text fontSize={'3xl'} textAlign={'center'} color={'green.300'} mb={'5'}>Caesar Cipher</Text>
           <Box>
