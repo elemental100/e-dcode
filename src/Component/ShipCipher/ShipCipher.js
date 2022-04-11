@@ -16,12 +16,11 @@ function ShipCipher() {
     // เข้าไปในทุก ๆ ตัวอักษร
     for (var i = 0; i < text.length; i++) {
       var c = text[i];
-      // หากเป็นตัวหนังสือ
       if (c.match(/[a-z]/i)) {
         // ให้ระบุตำแหน่ง ascii ของตัวอักษร
         var code = text.charCodeAt(i);
-        // ถ้าเป็นตัวพิมพ์ใหญ่
         if (typeValue === "encrypt") {
+          // ถ้าเป็นตัวพิมพ์ใหญ่
           if (code >= 65 && code <= 90) {
             c = String.fromCharCode(((code - 65 + key) % 26) + 65);
           } else if (code >= 97 && code <= 122) {

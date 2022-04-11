@@ -154,10 +154,11 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }) => {
+const DesktopSubNav = ({ label, href, target, subLabel }) => {
   return (
     <Link
       href={href}
+      target={target}
       role={"group"}
       display={"block"}
       p={2}
