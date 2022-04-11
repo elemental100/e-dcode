@@ -53,12 +53,12 @@ const NAV_ITEMS = [
       {
         label: "Encrypt",
         subLabel: "Encode a plain text to shift cipher",
-        href: "#",
+        href: "RSA",
       },
       {
         label: "Decrypt",
         subLabel: "Decode a shift cipher to plain text",
-        href: "#",
+        href: "RSA",
       },
     ],
   },
