@@ -1,25 +1,69 @@
 import { useState } from "react";
 
 function Monoalphabetic() {
-  const [pText, setCtext] = useState("");
+  const [cText, setCtext] = useState("");
+  const [pTextInput, setPTextInput] = useState("");
+  const [keytInput, setKeyInput] = useState(0);
+
+  let arr = [];
+
+  function onEncodeClick(planText = "", keyText = 0) {
+    let key = parseInt(keyText);
+    let text = planText.replace(/\s+/g, "");
+    for (let i = 0; i < text.length; i++) {
+      let asciiText = text.toUpperCase().charCodeAt(i) - 65;
+      let newT = ((asciiText + key) % 26) + 65;
+      arr.push(String.fromCharCode(newT));
+    }
+    console.log(arr);
+    setCtext(arr);
+  }
+
+  function onDecodeClick(planText = "", keyText = 0) {
+    let key = parseInt(keyText);
+    let text = planText.replace(/\s+/g, "");
+    for (let i = 0; i < text.length; i++) {
+      let asciiText = text.toUpperCase().charCodeAt(i) - 65 - key;
+      while (asciiText < 0) {
+        asciiText += 26;
+      }
+      let newT = asciiText + 65;
+      arr.push(String.fromCharCode(newT));
+    }
+    setCtext(arr);
+  }
   return (
     <div>
       <h1>Plantext</h1>
       <input
         type="text"
         placeholder="Plantext"
-        value={pText}
-        onChange={(event) => {
-          setCtext(event.target.value);
-        }}
+        value={pTextInput}
+        onInput={(event) => setPTextInput(event.target.value)}
       />
       <h1>Key</h1>
-      <input type="text" placeholder="Key" />
-      <h1>Mod</h1>
-      <input type="text" placeholder="Mod" />
+      <input
+        type="number"
+        placeholder="Key"
+        value={keytInput}
+        onInput={(event) => setKeyInput(event.target.value)}
+      />
       <div>
-        <button>ANS</button>
-        <h1>C text</h1>
+        <button
+          onClick={() => {
+            onEncodeClick(pTextInput, keytInput);
+          }}
+        >
+          Encode
+        </button>
+        <button
+          onClick={() => {
+            onDecodeClick(pTextInput, keytInput);
+          }}
+        >
+          Decode
+        </button>
+        <h1>{cText}</h1>
       </div>
     </div>
   );
