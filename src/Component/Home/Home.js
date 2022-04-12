@@ -1,9 +1,8 @@
-import { Box, Flex, Badge, Grid, GridItem, Image, Text, Heading } from '@chakra-ui/react';
+import { Box, Flex, Badge, Grid, GridItem, Image } from '@chakra-ui/react';
 import img01 from '../../img01.png'
 import img02 from '../../img02.png'
 import img03 from '../../img03.png'
 import img04 from '../../img04.png'
-import { UnlockIcon } from "@chakra-ui/icons";
 function Home() {
 
   return (

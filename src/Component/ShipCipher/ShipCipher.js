@@ -1,43 +1,34 @@
 import { useState } from "react";
-import { Box, Flex, Text, Button, Input, Stack, Image, useToast } from '@chakra-ui/react';
+import { Box, Flex, Text, Button, Input, InputGroup, InputRightElement, Stack, Tooltip, Image, useToast, useClipboard } from '@chakra-ui/react';
+import { CopyIcon, CheckCircleIcon } from "@chakra-ui/icons";
+import { mod } from 'mathjs';
 function ShipCipher() {
   const [resultText, setResultText] = useState("");
   const [plainTextInput, setPlaintext] = useState("");
   const [keyTextInput, setKeyInput] = useState(0);
+  const { hasCopied, onCopy } = useClipboard(resultText)
   const toast = useToast()
   var caesarShift = function (plainText = "", shift = 0, typeValue = "") {
     let text = plainText.replace(/\s+/g, '');
-    let key = parseInt(shift);
-    if (key < 0) {
-      return caesarShift(text, key + 26);
-    }
-    // สร้างตัวแปร Output
+    let key = shift >= 0 ? parseInt(shift) : parseInt(mod((shift, 26) + 26));
     var output = "";
-    // เข้าไปในทุก ๆ ตัวอักษร
     for (var i = 0; i < text.length; i++) {
       var c = text[i];
       if (c.match(/[a-z]/i)) {
-        // ให้ระบุตำแหน่ง ascii ของตัวอักษร
-        var code = text.charCodeAt(i);
+        var upper = text.toUpperCase();
+        var code = upper.charCodeAt(i);
         if (typeValue === "encrypt") {
-          // ถ้าเป็นตัวพิมพ์ใหญ่
           if (code >= 65 && code <= 90) {
-            c = String.fromCharCode(((code - 65 + key) % 26) + 65);
-          } else if (code >= 97 && code <= 122) {
-            c = String.fromCharCode(((code - 97 + key) % 26) + 97);
+            c = String.fromCharCode(mod((code - 65 + key), 26) + 65);
           }
-        } else {
+        } else if (typeValue === "decrypt") {
           if (code >= 65 && code <= 90) {
-            c = String.fromCharCode(((code - 65 - key) % 26) + 65);
-          } else if (code >= 97 && code <= 122) {
-            c = String.fromCharCode(((code - 97 - key) % 26) + 97);
+            c = String.fromCharCode(mod((code - 65 - key), 26) + 65);
           }
         }
       }
-      // รวมคำตอบ
       output += c;
     }
-    // ส่งค่าไปให้ตัวแปรที่กำหนด
     return setResultText(output);
   };
 
@@ -102,7 +93,12 @@ function ShipCipher() {
             </Stack>
             <Box>
               <Text>Result</Text>
-              <Input isReadOnly={true} cursor={'default'} color={'white'} bg={'green.300'} value={resultText}></Input>
+              <InputGroup>
+                <Input isReadOnly={true} cursor={'default'} color={'white'} bg={'green.300'} value={resultText}></Input>
+                <InputRightElement onClick={onCopy} children={<Tooltip label={'Copy'} bgColor={'white'} color={'black'}>
+                  {hasCopied ? <CheckCircleIcon /> : <CopyIcon />}
+                </Tooltip>} />
+              </InputGroup>
             </Box>
           </Box>
         </Box>
