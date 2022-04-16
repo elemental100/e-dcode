@@ -1,5 +1,6 @@
 import Monoalphabetic from "../Monoalphabetic/Monoalphabetic";
 import ShipCipher from "../ShipCipher/ShipCipher";
+import Railfence from "../Railfencecipher/Railfence";
 
 const NAV_ITEMS = [
   {
@@ -40,7 +41,7 @@ const NAV_ITEMS = [
       {
         label: "เข้ารหัส",
         subLabel: "ทำการเข้ารหัสข้อมูลแบบ Rail fence",
-        href: "RSA",
+        href: "Railfence",
       },
       {
         label: "ข้อมูลเพิ่มเติม",
