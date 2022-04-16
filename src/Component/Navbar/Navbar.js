@@ -9,6 +9,7 @@ import {
   Icon,
   Link,
   Popover,
+  Tooltip,
   PopoverTrigger,
   PopoverContent,
   useBreakpointValue,
@@ -49,7 +50,7 @@ export default function Navbar() {
             onClick={onToggle}
             icon={
               isOpen ? (
-                <CloseIcon w={3} h={3} />
+                <CloseIcon w={3} h={3} color={'green.300'} />
               ) : (
                 <HamburgerIcon w={5} h={5} color={"green.300"} />
               )
@@ -59,20 +60,27 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={"green.300"}
-          >
-            <UnlockIcon w={4} h={4} mr={1} />
-            Cryptography
-          </Text>
-
+          <Tooltip label={"ไปสู่หน้าแรก"}>
+            <Text
+              onClick={() => {
+                navigate("/");
+              }}
+              cursor={'pointer'}
+              position={"relative"}
+              transform={"auto"}
+              translateY={"10%"}
+              textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              fontFamily={"heading"}
+              color={"green.300"}
+            >
+              <UnlockIcon w={5} h={5} p={1} />
+              Cryptography
+            </Text>
+          </Tooltip>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
         </Flex>
-
         <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
@@ -81,23 +89,22 @@ export default function Navbar() {
         >
           <Button
             onClick={() => {
-              navigate("/");
+              window.open('https://github.com/elemental100/e-dcode', '_blank');
             }}
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
-            bg={"green.400"}
+            bg={"pink.500"}
             href={"/" ?? "#"}
             _hover={{
-              bg: "green.300",
+              bg: "pink.400",
             }}
           >
-            Home
+            Github
           </Button>
         </Stack>
       </Flex>
-
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
@@ -109,15 +116,15 @@ const DesktopNav = () => {
   const linkColor = "white";
   const linkHoverColor = "green.100";
   const popoverContentBgColor = "white";
-
   return (
     <Stack direction={"row"} spacing={4}>
       {navItems.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Link
+              <Button
                 p={2}
+                bgColor={"black"}
                 href={navItem.href ?? "#"}
                 fontSize={"sm"}
                 fontWeight={500}
@@ -128,7 +135,7 @@ const DesktopNav = () => {
                 }}
               >
                 {navItem.label}
-              </Link>
+              </Button>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -154,22 +161,23 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }) => {
+const DesktopSubNav = ({ label, href, target, subLabel }) => {
   return (
     <Link
       href={href}
+      target={target}
       role={"group"}
       display={"block"}
       p={2}
       rounded={"md"}
-      _hover={{ bg: "gray.100" }}
+      _hover={{ bg: "gray.200" }}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
           <Text
             transition={"all .3s ease"}
             color={"black"}
-            _groupHover={{ color: "green.300" }}
+            _groupHover={{ color: "green.400" }}
             fontWeight={500}
           >
             {label}
@@ -209,7 +217,7 @@ const MobileNavItem = ({ label, children, href }) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
+        as={Button}
         href={href ?? "#"}
         justify={"space-between"}
         align={"center"}
