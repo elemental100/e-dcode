@@ -6,6 +6,7 @@ import Columnar from "./Component/Columnar/Columnar";
 import Monoalphabetic from "./Component/Monoalphabetic/Monoalphabetic";
 import Navbar from "./Component/Navbar/Navbar";
 import ShipCipher from "./Component/ShipCipher/ShipCipher";
+import Railfence from "./Component/Railfencecipher/Railfence";
 import ParticlesBackground from "./ParticleBackground";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="Monoalphabetic" element={<Monoalphabetic />} />
           <Route exact path="ShipCipher" element={<ShipCipher />} />
+          <Route exact path="Railfence" element={<Railfence />} />
         </Routes>
       </Router>
 
