@@ -61,7 +61,7 @@ function ShipCipher() {
             </Stack>
             <Stack name="buttonHolder" direction={'row'} spacing={4} mt={5} mb={5}>
               <Button colorScheme='green' onClick={() => {
-                if (keyTextInput === 0) {
+                if (keyTextInput === 0 || keyTextInput === "") {
                   toast({
                     title: 'เกิดข้อผิดพลาด',
                     description: "กรุณาระบุจำนวน Key ที่ต้องการเลื่อน",
@@ -76,7 +76,7 @@ function ShipCipher() {
                 Encrypt
               </Button>
               <Button colorScheme='pink' onClick={() => {
-                if (keyTextInput === 0) {
+                if (keyTextInput === 0 || keyTextInput === "") {
                   toast({
                     title: 'เกิดข้อผิดพลาด',
                     description: "กรุณาระบุจำนวน Key ที่ต้องการเลื่อน",
