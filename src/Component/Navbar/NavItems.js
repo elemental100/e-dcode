@@ -1,7 +1,3 @@
-import Monoalphabetic from "../Monoalphabetic/Monoalphabetic";
-import ShipCipher from "../ShipCipher/ShipCipher";
-import Railfence from "../Railfencecipher/Railfence";
-
 const NAV_ITEMS = [
   {
     label: "Shift Cipher",

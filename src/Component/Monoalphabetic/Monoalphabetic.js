@@ -19,7 +19,7 @@ function Monoalphabetic() {
       arr.push(String.fromCharCode(newT));
     }
     console.log(arr);
-    return setCtext(arr);
+    return setCtext(arr.join(""));
   }
 
   function onDecodeClick(planText = "", keyText = 0) {
@@ -33,7 +33,7 @@ function Monoalphabetic() {
       let newT = asciiText + 65;
       arr.push(String.fromCharCode(newT));
     }
-    return setCtext(arr);
+    return setCtext(arr.join(""));
   }
   return (
     <Flex justify={'center'} m={'2rem'}>
