@@ -120,7 +120,6 @@ function Home() {
                 fontWeight='semibold'
                 as='h4'
                 lineHeight='tight'
-                isTruncated
               >
                 ข้อความที่ผ่านการเข้ารหัสจะแสดงขึ้นที่กล่องสีเขียว
               </Box>

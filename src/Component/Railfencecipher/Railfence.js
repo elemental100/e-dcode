@@ -97,7 +97,7 @@ function Railfence() {
                                 else if (keyTextInput < 2) {
                                     toast({
                                         title: 'เกิดข้อผิดพลาด',
-                                        description: "จำนวน key ห้ามกว่า 2",
+                                        description: "จำนวน key ต้องมีค่าตั้งแต่ 2 ขึ้นไป",
                                         status: 'error',
                                         duration: 2000,
                                         isClosable: true,
