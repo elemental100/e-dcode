@@ -72,6 +72,7 @@ export default function Navbar() {
               textAlign={useBreakpointValue({ base: "center", md: "left" })}
               fontFamily={"heading"}
               color={"green.300"}
+              fontSize={'xl'}
             >
               <UnlockIcon w={5} h={5} p={1} />
               Cryptography
@@ -92,7 +93,7 @@ export default function Navbar() {
               window.open('https://github.com/elemental100/e-dcode', '_blank');
             }}
             display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
+            fontSize={'xl'}
             fontWeight={600}
             color={"white"}
             bg={"pink.500"}
@@ -126,7 +127,7 @@ const DesktopNav = () => {
                 p={2}
                 bgColor={"black"}
                 href={navItem.href ?? "#"}
-                fontSize={"sm"}
+                fontSize={'lg'}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
@@ -142,6 +143,7 @@ const DesktopNav = () => {
               <PopoverContent
                 border={0}
                 boxShadow={"xl"}
+                fontSize={'xl'}
                 bg={popoverContentBgColor}
                 p={4}
                 rounded={"xl"}
@@ -251,7 +253,7 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link key={child.label} py={2} href={child.href} target={child.target} zIndex={999}>
                 {child.label}
               </Link>
             ))}

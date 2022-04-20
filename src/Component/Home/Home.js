@@ -8,7 +8,7 @@ function Home() {
   return (
     <Box>
 
-      <Flex justifyContent={'center'} className="Holder" bgColor={'gray.600'} m={5} borderRadius={5} mawW={'100%'}>
+      <Flex justifyContent={'center'} className="Holder" bgColor={'gray.600'} m={5} borderRadius={5} maxW={'100vw'}>
         <Grid templateRows={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
           templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }} gap={5} p={5}>
           <GridItem className="pic1" rowSpan={1} colSpan={1} p={1} bgColor={'white'} minW='xs' maxW='xs' borderWidth='1px' borderRadius='lg' overflow='hidden'>

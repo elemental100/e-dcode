@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Flex, Text, Button, Input, InputGroup, InputRightElement, Stack, Tooltip, Image, useToast, useClipboard } from '@chakra-ui/react';
+import { Box, Flex, Text, Button, Input, InputGroup, InputRightElement, Stack, Tooltip, Textarea, Image, useToast, useClipboard } from '@chakra-ui/react';
 import { CopyIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import { mod } from 'mathjs';
 function ShipCipher() {
@@ -33,27 +33,31 @@ function ShipCipher() {
   };
 
   return (
-    <Flex justify={'center'} m={'2rem'}>
-      <Stack direction={{ base: 'column', md: 'row' }} spacing={4} align='start'>
-        <Box className='leftPanel' maxW={'md'} minH={'350px'} bg='gray.700' w='100%' p={5} color='white' borderRadius='lg' overflow='hidden'
+    <Flex flexDirection={'column'} alignItems={'center'} justifyContent={'center'} p={'5'}>
+      <Stack gap={'1'} direction={{ base: 'column', md: 'row' }} spacing={4} align='start'>
+        <Box className='leftPanel' maxW={'md'} minH={'sm'} bg='gray.700' w='100%' p={5} color='white' borderRadius='lg' overflow='hidden'
           display='block' boxShadow='2xl'>
           <Text fontSize={'3xl'} textAlign={'center'} color={'green.300'} mb={'5'}>Caesar Cipher</Text>
           <Box>
-            <Text>Plain Text</Text>
+            <Text fontSize={'2xl'}>Plain Text</Text>
             <Stack name="inputHolder" spacing={2} direction={'column'}>
-              <Input
-                focusBorderColor="green.300"
+              <Textarea
+                h={{ base: '16px', md: '150px' }}
+                resize={'none'}
+                focusBorderColor={'green.300'}
                 bg={'gray.900'}
                 type="text"
-                placeholder="Input a plain text.."
+                fontSize={'xl'}
+                placeholder={'Input a plain text..'}
                 value={plainTextInput}
                 onInput={(event) => setPlaintext(event.target.value)}
               />
-              <Text>KEY</Text>
+              <Text fontSize={'2xl'}>KEY</Text>
               <Input
                 focusBorderColor="green.300"
                 bg={'gray.900'}
                 type="number"
+                fontSize={'xl'}
                 placeholder="Input a key.."
                 value={keyTextInput}
                 onInput={(event) => setKeyInput(event.target.value)}
@@ -92,9 +96,9 @@ function ShipCipher() {
               </Button>
             </Stack>
             <Box>
-              <Text>Result</Text>
+              <Text fontSize={'2xl'}>Result</Text>
               <InputGroup>
-                <Input isReadOnly={true} cursor={'default'} color={'white'} bg={'green.300'} value={resultText}></Input>
+                <Textarea h={{ base: '16px', md: '150px' }} isReadOnly={true} cursor={'default'} color={'white'} bg={'gray.900'} value={resultText} fontSize={'xl'}></Textarea>
                 <InputRightElement onClick={onCopy} children={<Tooltip label={'Copy'} bgColor={'white'} color={'black'}>
                   {hasCopied ? <CheckCircleIcon /> : <CopyIcon />}
                 </Tooltip>} />
@@ -111,6 +115,7 @@ function ShipCipher() {
           <Box
             p='2'
             fontWeight='light'
+            fontSize={'2xl'}
             as='h1'
             lineHeight='tight'
           >
@@ -118,6 +123,9 @@ function ShipCipher() {
           </Box>
         </Box>
       </Stack>
+      <Box pt={1}>
+        <Image w={'100%'} h={{ base: 70, sm: 90, md: 120 }} src={'https://i.imgur.com/wQjsSEK.gif'}></Image>
+      </Box>
     </Flex>
   );
 }
