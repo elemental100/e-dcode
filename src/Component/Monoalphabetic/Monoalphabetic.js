@@ -100,7 +100,7 @@ function Monoalphabetic() {
             <Box>
               <Text fontSize={'2xl'}>Result</Text>
               <InputGroup>
-                <Textarea h={{ base: '16px', md: '150px' }} isReadOnly={true} cursor={'default'} color={'white'} bg={'green.300'} value={cText} fontSize={'xl'}></Textarea>
+                <Textarea h={{ base: '16px', md: '150px' }} isReadOnly={true} cursor={'default'} color={'white'} bg={'gray.900'} value={cText} fontSize={'xl'}></Textarea>
                 <InputRightElement onClick={onCopy} children={<Tooltip label={'Copy'} bgColor={'white'} color={'black'}>
                   {hasCopied ? <CheckCircleIcon /> : <CopyIcon />}
                 </Tooltip>} />
