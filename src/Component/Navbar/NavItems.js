@@ -53,7 +53,7 @@ const NAV_ITEMS = [
       {
         label: "เข้ารหัส",
         subLabel: "ทำการเข้ารหัสข้อมูลแบบ RSA",
-        href: "#",
+        href: "/RSA",
       },
       {
         label: "ข้อมูลเพิ่มเติม",

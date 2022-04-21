@@ -23,6 +23,7 @@ function App() {
           <Route exact path="Monoalphabetic" element={<Monoalphabetic />} />
           <Route exact path="ShipCipher" element={<ShipCipher />} />
           <Route exact path="Railfence" element={<Railfence />} />
+          <Route exact path="RSA" element={<Rsa />} />
         </Routes>
       </Router>
 
