@@ -24,7 +24,6 @@ function Monoalphabetic() {
   function onDecodeClick(planText = "", keyText = 0) {
     let key = parseInt(keyText);
     let text = planText.replace(/\s+/g, "");
-    let result = "";
     for (let i = 0; i < text.length; i++) {
       let asciiText = text.toUpperCase().charCodeAt(i) - 65 - key;
       while (asciiText < 0) {
@@ -32,7 +31,6 @@ function Monoalphabetic() {
       }
       let newT = asciiText + 65;
       arr.push(String.fromCharCode(newT));
-      result = arr;
     }
     return setCtext(arr.join(""));
   }
