@@ -24,14 +24,12 @@ function ShipCipher() {
     const { hasCopied, onCopy } = useClipboard(resultText);
     const toast = useToast();
     var caesarShift = function (plainText = "", shift = 0, typeValue = "") {
-        let text = plainText.replace(/\s+/g, "");
         let key = shift >= 0 ? parseInt(shift) : parseInt((mod(shift, 26) + 26));
         var output = "";
-        for (var i = 0; i < text.length; i++) {
-            var c = text[i];
+        for (var i = 0; i < plainText.length; i++) {
+            var c = plainText[i];
             if (c.match(/[a-z]/i)) {
-                var upper = text.toUpperCase();
-                var code = upper.charCodeAt(i);
+                var code = plainText.charCodeAt(i);
                 if (typeValue === "encrypt") {
                     if (code >= 65 && code <= 90) {
                         c = String.fromCharCode(mod(code - 65 + key, 26) + 65);
