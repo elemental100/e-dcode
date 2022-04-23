@@ -12,6 +12,7 @@ import {
   Image,
   useToast,
   useClipboard,
+  Select,
 } from "@chakra-ui/react";
 import { CopyIcon, CheckCircleIcon } from "@chakra-ui/icons";
 function Rsa() {
@@ -23,6 +24,7 @@ function Rsa() {
   const [mDTextInput, setMDTextInput] = useState("");
   const [keyEncryptText, setkeyEncryptText] = useState("");
   const [keyDecryptText, setkeyDecryptText] = useState("");
+  const [keySize, setKeySize] = useState("512");
   const { hasCopied: hasPublic, onCopy: onPublicCopy } =
     useClipboard(publicText);
   const { hasCopied: hasPrivate, onCopy: onPrivateCopy } =
@@ -62,25 +64,26 @@ function Rsa() {
     setCtext(btoa(bigInt(m).modPow(e, n).toString()));
   }
 
-  function onGenerateClick() {
-    let p = rndPrimeNumber("P");
-    let q = rndPrimeNumber("Q", p);
+  function onGenerateClick(keysize = 0) {
+    let p = rndPrimeNumber("P", 0, keysize);
+    let q = rndPrimeNumber("Q", p, keysize);
     let n = bigInt(p).multiply(q);
     let phiN = bigInt(bigInt(p).minus(1)).multiply(bigInt(q).minus(1));
-    let e = rndPrimeNumber("E");
+    let e = rndPrimeNumber("E", p, keysize);
 
     if (e < phiN && +bigInt.gcd(e, phiN) === 1) {
       let d = bigInt(e).modInv(phiN);
       setPublictext(btoa([e, n]));
       setPrivatetext(btoa([d, n]));
     } else {
-      return onGenerateClick();
+      return onGenerateClick(keysize);
     }
   }
 
-  function rndPrimeNumber(type = "", p = 0) {
-    const min = bigInt.one.shiftLeft(512 - 1);
-    const max = bigInt.one.shiftLeft(512).prev();
+  function rndPrimeNumber(type = "", p = 0, keysize = 0) {
+    console.log(keysize)
+    const min = bigInt.one.shiftLeft(keysize - 1);
+    const max = bigInt.one.shiftLeft(keysize).prev();
     while (true) {
       let number = bigInt.randBetween(min, max);
       if (number.isProbablePrime(256)) {
@@ -90,13 +93,13 @@ function Rsa() {
           if (number !== p && Math.abs(p - number) !== 1) {
             return number;
           } else {
-            return rndPrimeNumber("Q");
+            return rndPrimeNumber("Q", p, keysize);
           }
         } else if (type === "E") {
           return number;
         }
       } else {
-        return rndPrimeNumber(type);
+        return rndPrimeNumber(type,p,keysize);
       }
     }
   }
@@ -133,7 +136,7 @@ function Rsa() {
           </Text>
           <Textarea
             h={{ base: 50, md: 225 }}
-            w={'100%'}
+            w={"100%"}
             resize={"none"}
             focusBorderColor={"green.300"}
             bg={"gray.900"}
@@ -152,7 +155,7 @@ function Rsa() {
 
           <Textarea
             h={{ base: 50, md: 225 }}
-            w={'100%'}
+            w={"100%"}
             resize={"none"}
             focusBorderColor={"green.300"}
             bg={"gray.900"}
@@ -162,13 +165,25 @@ function Rsa() {
             placeholder={"Private Key.."}
             value={privateText}
           ></Textarea>
+          <Select
+          mt={2}
+            color="black"
+            bgColor="white"
+            value={keySize}
+            onChange={(e) => {
+              setKeySize(e.target.value);
+            }}
+          >
+            <option value="512" >512</option>
+            <option value="1024">1024</option>
+          </Select>
           <Button
             mt={2}
             w={"100%"}
             bg={"green.300"}
             _hover={{ bg: "green.400" }}
             onClick={() => {
-              onGenerateClick();
+              onGenerateClick(+keySize);
             }}
           >
             Generate Key
@@ -199,7 +214,9 @@ function Rsa() {
               fontSize={"xl"}
               placeholder={"Input a plain text.."}
               value={mTextInput}
-              onInput={(event) => setMTextInput(event.target.value)}
+              onChange={(e) => {
+                e.target.value.length < 70 && setMTextInput(e.target.value)
+              }}
             />
             <Text fontSize={"2xl"}>Public/Private Key</Text>
             <Textarea
@@ -214,8 +231,8 @@ function Rsa() {
               onInput={(event) => setkeyEncryptText(event.target.value)}
             />
             <Button
-              bgColor={'red.500'}
-              _hover={{bg: 'red.300'}}
+              bgColor={"red.500"}
+              _hover={{ bg: "red.300" }}
               onClick={() => {
                 onEnCrpytClick(mTextInput);
               }}
@@ -280,8 +297,8 @@ function Rsa() {
               onInput={(event) => setkeyDecryptText(event.target.value)}
             />
             <Button
-              bgColor={'blue.500'}
-              _hover={{bg: 'blue.300'}}
+              bgColor={"blue.500"}
+              _hover={{ bg: "blue.300" }}
               onClick={() => {
                 onDecryptClick(mDTextInput);
               }}
