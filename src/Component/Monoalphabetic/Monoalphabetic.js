@@ -116,10 +116,11 @@ function Monoalphabetic() {
               mb={5}
             >
               <Button
-                colorScheme="green"
+                colorScheme="green" disabled={!pTextInput}
                 onClick={() => {
                   if (keytInput === 0 || keytInput === "") {
                     toast({
+                      position: 'top',
                       title: "เกิดข้อผิดพลาด",
                       description: "กรุณาระบุจำนวน Key ที่ต้องการเลื่อน",
                       status: "error",
@@ -133,10 +134,11 @@ function Monoalphabetic() {
                 Encrypt
               </Button>
               <Button
-                colorScheme="pink"
+                colorScheme="pink" disabled={!pTextInput}
                 onClick={() => {
                   if (keytInput === 0 || keytInput === "") {
                     toast({
+                      position: 'top',
                       title: "เกิดข้อผิดพลาด",
                       description: "กรุณาระบุจำนวน Key ที่ต้องการเลื่อน",
                       status: "error",
