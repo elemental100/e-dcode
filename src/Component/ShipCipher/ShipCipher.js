@@ -25,7 +25,7 @@ function ShipCipher() {
   const toast = useToast();
   var caesarShift = function (plainText = "", shift = 0, typeValue = "") {
     let text = plainText.replace(/\s+/g, "");
-    let key = shift >= 0 ? parseInt(shift) : parseInt(mod((shift, 26) + 26));
+    let key = shift >= 0 ? parseInt(shift) : parseInt((mod(shift, 26) + 26));
     var output = "";
     for (var i = 0; i < text.length; i++) {
       var c = text[i];
