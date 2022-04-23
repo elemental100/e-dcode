@@ -233,6 +233,7 @@ function Rsa() {
               resize={"none"}
               focusBorderColor="green.300"
               bg={"gray.900"}
+              cursor={'default'}
               type="number"
               fontSize={"xl"}
               readOnly
@@ -293,6 +294,7 @@ function Rsa() {
               h={{ base: "16px", md: "150px" }}
               resize={"none"}
               focusBorderColor="green.300"
+              cursor={'default'}
               bg={"gray.900"}
               type="number"
               fontSize={"xl"}

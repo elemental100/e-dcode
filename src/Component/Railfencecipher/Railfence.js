@@ -88,9 +88,10 @@ function Railfence() {
                             />
                         </Stack>
                         <Stack name="buttonHolder" direction={'row'} spacing={4} mt={5} mb={5}>
-                            <Button colorScheme='green' onClick={() => {
+                            <Button colorScheme='green' disabled={!keyTextInput} onClick={() => {
                                 if (keyTextInput === 0 || keyTextInput === "") {
                                     toast({
+                                        position: 'top',
                                         title: 'เกิดข้อผิดพลาด',
                                         description: "กรุณาระบุจำนวน Key ที่ต้องการเลื่อน",
                                         status: 'error',
@@ -100,6 +101,7 @@ function Railfence() {
                                 }
                                 else if (keyTextInput < 2) {
                                     toast({
+                                        position: 'top',
                                         title: 'เกิดข้อผิดพลาด',
                                         description: "จำนวน key ต้องมีค่าตั้งแต่ 2 ขึ้นไป",
                                         status: 'error',
@@ -112,9 +114,10 @@ function Railfence() {
                             >
                                 Encrypt
                             </Button>
-                            <Button colorScheme='pink' onClick={() => {
+                            <Button colorScheme='pink' disabled={!keyTextInput} onClick={() => {
                                 if (keyTextInput === 0 || keyTextInput === "") {
                                     toast({
+                                        position: 'top',
                                         title: 'เกิดข้อผิดพลาด',
                                         description: "กรุณาระบุจำนวน Key ที่ต้องการเลื่อน",
                                         status: 'error',
@@ -124,6 +127,7 @@ function Railfence() {
                                 }
                                 else if (keyTextInput < 2) {
                                     toast({
+                                        position: 'top',
                                         title: 'เกิดข้อผิดพลาด',
                                         description: "จำนวน key ห้ามกว่า 2",
                                         status: 'error',
