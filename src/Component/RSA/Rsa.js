@@ -214,7 +214,9 @@ function Rsa() {
               onInput={(event) => setkeyEncryptText(event.target.value)}
             />
             <Button
+            
               bgColor={'red.500'}
+              disabled={!mTextInput}
               _hover={{bg: 'red.300'}}
               onClick={() => {
                 onEnCrpytClick(mTextInput);
@@ -224,7 +226,7 @@ function Rsa() {
             </Button>
             <Text fontSize={"2xl"}>
               Cipher Text
-              <Button ml={1} p={1} onClick={onEncryptCopy} colorScheme={"teal"}>
+              <Button ml={1} p={1} onClick={onEncryptCopy} colorScheme={"teal"}> 
                 {hasEncrypt ? <CheckCircleIcon /> : <CopyIcon />}
               </Button>
             </Text>
@@ -283,6 +285,7 @@ function Rsa() {
             <Button
               bgColor={'blue.500'}
               _hover={{bg: 'blue.300'}}
+              disabled={!mDTextInput}
               onClick={() => {
                 onDecryptClick(mDTextInput);
               }}
