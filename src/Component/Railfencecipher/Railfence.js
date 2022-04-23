@@ -90,6 +90,7 @@ function Railfence() {
                         <Stack name="buttonHolder" direction={'row'} spacing={4} mt={5} mb={5}>
                             <Button colorScheme='green' disabled={!keyTextInput} onClick={() => {
                                 if (keyTextInput === 0 || keyTextInput === "") {
+                                    toast.closeAll()
                                     toast({
                                         position: 'top',
                                         title: 'เกิดข้อผิดพลาด',
@@ -100,6 +101,7 @@ function Railfence() {
                                     })
                                 }
                                 else if (keyTextInput < 2) {
+                                    toast.closeAll()
                                     toast({
                                         position: 'top',
                                         title: 'เกิดข้อผิดพลาด',
@@ -116,6 +118,7 @@ function Railfence() {
                             </Button>
                             <Button colorScheme='pink' disabled={!keyTextInput} onClick={() => {
                                 if (keyTextInput === 0 || keyTextInput === "") {
+                                    toast.closeAll()
                                     toast({
                                         position: 'top',
                                         title: 'เกิดข้อผิดพลาด',
@@ -124,12 +127,12 @@ function Railfence() {
                                         duration: 2000,
                                         isClosable: true,
                                     })
-                                }
-                                else if (keyTextInput < 2) {
+                                } else if (keyTextInput < 2) {
+                                    toast.closeAll()
                                     toast({
                                         position: 'top',
                                         title: 'เกิดข้อผิดพลาด',
-                                        description: "จำนวน key ห้ามกว่า 2",
+                                        description: "จำนวน key ต้องมีค่าตั้งแต่ 2 ขึ้นไป",
                                         status: 'error',
                                         duration: 2000,
                                         isClosable: true,

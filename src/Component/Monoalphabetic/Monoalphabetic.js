@@ -119,6 +119,7 @@ function Monoalphabetic() {
                 colorScheme="green" disabled={!pTextInput}
                 onClick={() => {
                   if (keytInput === 0 || keytInput === "") {
+                    toast.closeAll()
                     toast({
                       position: 'top',
                       title: "เกิดข้อผิดพลาด",
@@ -137,6 +138,7 @@ function Monoalphabetic() {
                 colorScheme="pink" disabled={!pTextInput}
                 onClick={() => {
                   if (keytInput === 0 || keytInput === "") {
+                    toast.closeAll()
                     toast({
                       position: 'top',
                       title: "เกิดข้อผิดพลาด",
