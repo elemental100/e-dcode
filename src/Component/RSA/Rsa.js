@@ -1,5 +1,4 @@
 import { useState } from "react";
-import bigInt from "big-integer";
 import {
   Box,
   Flex,
@@ -15,6 +14,8 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { CopyIcon, CheckCircleIcon } from "@chakra-ui/icons";
+import bigInt from "big-integer";
+import { encrypt, decrypt } from "../../services/rsaCipher.js";
 function Rsa() {
   const [cText, setCtext] = useState("");
   const [decryptText, setDecryptTexttext] = useState("");
@@ -31,38 +32,6 @@ function Rsa() {
     useClipboard(privateText);
   const { hasCopied: hasEncrypt, onCopy: onEncryptCopy } = useClipboard(cText);
   const toast = useToast();
-
-  function onDecryptClick(plainText = "") {
-    let pubText = atob(keyDecryptText).split(",");
-    let d = bigInt(pubText[0]);
-    let n = bigInt(pubText[1]);
-    let c = atob(plainText);
-    let m = bigInt(c).modPow(d, n).toString();
-    let asciiText = "";
-    let arr = [];
-    for (let i = 0; i <= m.length; i++) {
-      if (+asciiText >= 32) {
-        arr.push(String.fromCharCode(+asciiText));
-        asciiText = m[i];
-      } else {
-        asciiText += m[i];
-      }
-    }
-    setDecryptTexttext(arr.join(""));
-  }
-
-  function onEnCrpytClick(planText = "") {
-    let pubText = atob(keyEncryptText).split(",");
-    let e = bigInt(pubText[0]);
-    let n = bigInt(pubText[1]);
-    let mtext = [];
-    for (let index = 0; index < planText.length; index++) {
-      let asciiText = planText.charCodeAt(index);
-      mtext.push(asciiText);
-    }
-    let m = bigInt(mtext.join(""));
-    setCtext(btoa(bigInt(m).modPow(e, n).toString()));
-  }
 
   function onGenerateClick(keysize = 0) {
     let p = rndPrimeNumber("P", 0, keysize);
@@ -81,7 +50,7 @@ function Rsa() {
   }
 
   function rndPrimeNumber(type = "", p = 0, keysize = 0) {
-    console.log(keysize)
+    console.log(keysize);
     const min = bigInt.one.shiftLeft(keysize - 1);
     const max = bigInt.one.shiftLeft(keysize).prev();
     while (true) {
@@ -99,7 +68,7 @@ function Rsa() {
           return number;
         }
       } else {
-        return rndPrimeNumber(type,p,keysize);
+        return rndPrimeNumber(type, p, keysize);
       }
     }
   }
@@ -166,7 +135,7 @@ function Rsa() {
             value={privateText}
           ></Textarea>
           <Select
-          mt={2}
+            mt={2}
             color="black"
             bgColor="white"
             value={keySize}
@@ -174,7 +143,7 @@ function Rsa() {
               setKeySize(e.target.value);
             }}
           >
-            <option value="512" >512</option>
+            <option value="512">512</option>
             <option value="1024">1024</option>
           </Select>
           <Button
@@ -215,7 +184,7 @@ function Rsa() {
               placeholder={"Input a plain text.."}
               value={mTextInput}
               onChange={(e) => {
-                e.target.value.length < 70 && setMTextInput(e.target.value)
+                e.target.value.length < 70 && setMTextInput(e.target.value);
               }}
             />
             <Text fontSize={"2xl"}>Public/Private Key</Text>
@@ -231,15 +200,14 @@ function Rsa() {
               onInput={(event) => setkeyEncryptText(event.target.value)}
             />
             <Button
-
-              bgColor={'red.500'}
+              bgColor={"red.500"}
               disabled={!mTextInput}
-              _hover={{ bg: 'red.300' }}
+              _hover={{ bg: "red.300" }}
               onClick={() => {
                 if (!keyEncryptText) {
-                  toast.closeAll()
+                  toast.closeAll();
                   toast({
-                    position: 'top',
+                    position: "top",
                     title: "เกิดข้อผิดพลาด",
                     description: "กรุณาใส่ Public/Private Key",
                     status: "error",
@@ -247,7 +215,7 @@ function Rsa() {
                     isClosable: true,
                   });
                 } else {
-                  onEnCrpytClick(mTextInput);
+                  setCtext(encrypt(mTextInput, keyEncryptText));
                 }
               }}
             >
@@ -264,7 +232,7 @@ function Rsa() {
               resize={"none"}
               focusBorderColor="green.300"
               bg={"gray.900"}
-              cursor={'default'}
+              cursor={"default"}
               type="number"
               fontSize={"xl"}
               readOnly
@@ -312,14 +280,14 @@ function Rsa() {
               onInput={(event) => setkeyDecryptText(event.target.value)}
             />
             <Button
-              bgColor={'blue.500'}
-              _hover={{ bg: 'blue.300' }}
+              bgColor={"blue.500"}
+              _hover={{ bg: "blue.300" }}
               disabled={!mDTextInput}
               onClick={() => {
                 if (!keyDecryptText) {
-                  toast.closeAll()
+                  toast.closeAll();
                   toast({
-                    position: 'top',
+                    position: "top",
                     title: "เกิดข้อผิดพลาด",
                     description: "กรุณาใส่ Public/Private Key",
                     status: "error",
@@ -327,7 +295,7 @@ function Rsa() {
                     isClosable: true,
                   });
                 } else {
-                  onDecryptClick(mDTextInput);
+                  setDecryptTexttext(decrypt(mDTextInput, keyDecryptText));
                 }
               }}
             >
@@ -338,7 +306,7 @@ function Rsa() {
               h={{ base: "16px", md: "150px" }}
               resize={"none"}
               focusBorderColor="green.300"
-              cursor={'default'}
+              cursor={"default"}
               bg={"gray.900"}
               type="number"
               fontSize={"xl"}

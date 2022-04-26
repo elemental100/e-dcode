@@ -5,7 +5,7 @@ const NAV_ITEMS = [
       {
         label: "เข้ารหัส",
         subLabel: "ทำการเข้ารหัสข้อมูลแบบ Shift cipher",
-        href: "ShipCipher",
+        href: "ShiftCipher",
       },
       {
         label: "ข้อมูลเพิ่มเติม",

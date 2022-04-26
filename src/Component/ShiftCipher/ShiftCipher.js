@@ -1,26 +1,27 @@
-import { CheckCircleIcon, CopyIcon } from "@chakra-ui/icons";
+import { useState } from "react";
 import {
   Box,
-  Button,
   Flex,
-  Image,
+  Text,
+  Button,
   Input,
   InputGroup,
   InputRightElement,
   Stack,
-  Text,
-  Textarea,
   Tooltip,
-  useClipboard,
+  Textarea,
+  Image,
   useToast,
+  useClipboard,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { encrypt, decrypt } from "../../services/monoCipher.js";
-function Monoalphabetic() {
-  const [cText, setCtext] = useState("");
-  const [pTextInput, setPTextInput] = useState("");
-  const [keytInput, setKeyInput] = useState(0);
-  const { hasCopied, onCopy } = useClipboard(cText);
+import { CopyIcon, CheckCircleIcon } from "@chakra-ui/icons";
+import shiftCipher from "../../services/shiftCipher";
+
+function ShipCipher() {
+  const [resultText, setResultText] = useState("");
+  const [plainTextInput, setPlaintext] = useState("");
+  const [keyTextInput, setKeyInput] = useState(0);
+  const { hasCopied, onCopy } = useClipboard(resultText);
   const toast = useToast();
   return (
     <Flex
@@ -30,6 +31,7 @@ function Monoalphabetic() {
       p={"5"}
     >
       <Stack
+        gap={"1"}
         direction={{ base: "column", md: "row" }}
         spacing={4}
         align="start"
@@ -37,7 +39,7 @@ function Monoalphabetic() {
         <Box
           className="leftPanel"
           maxW={"md"}
-          minH={"350px"}
+          minH={"sm"}
           bg="gray.700"
           w="100%"
           p={5}
@@ -53,7 +55,7 @@ function Monoalphabetic() {
             color={"green.300"}
             mb={"5"}
           >
-            Monoalphabetic substitution cipher
+            Caesar Cipher
           </Text>
           <Box>
             <Text fontSize={"2xl"}>Plain Text/ Cipher Text</Text>
@@ -61,13 +63,13 @@ function Monoalphabetic() {
               <Textarea
                 h={{ base: "16px", md: "150px" }}
                 resize={"none"}
-                focusBorderColor="green.300"
+                focusBorderColor={"green.300"}
                 bg={"gray.900"}
                 type="text"
                 fontSize={"xl"}
-                placeholder="Input a plain text.."
-                value={pTextInput}
-                onInput={(event) => setPTextInput(event.target.value)}
+                placeholder={"Input a plain text.."}
+                value={plainTextInput}
+                onInput={(event) => setPlaintext(event.target.value)}
               />
               <Text fontSize={"2xl"}>KEY</Text>
               <Input
@@ -76,7 +78,7 @@ function Monoalphabetic() {
                 type="number"
                 fontSize={"xl"}
                 placeholder="Input a key.."
-                value={keytInput}
+                value={keyTextInput}
                 onInput={(event) => setKeyInput(event.target.value)}
               />
             </Stack>
@@ -89,10 +91,10 @@ function Monoalphabetic() {
             >
               <Button
                 colorScheme="green"
-                disabled={!pTextInput}
+                disabled={!plainTextInput}
                 onClick={() => {
-                  if (keytInput === 0 || keytInput === "") {
-                    toast.closeAll();
+                  toast.closeAll();
+                  if (keyTextInput == 0 || !keyTextInput) {
                     toast({
                       position: "top",
                       title: "เกิดข้อผิดพลาด",
@@ -101,17 +103,20 @@ function Monoalphabetic() {
                       duration: 2000,
                       isClosable: true,
                     });
+                  } else {
+                    setResultText(
+                      shiftCipher(plainTextInput, keyTextInput, "encrypt")
+                    );
                   }
-                  setCtext(encrypt(pTextInput, keytInput));
                 }}
               >
                 Encrypt
               </Button>
               <Button
                 colorScheme="pink"
-                disabled={!pTextInput}
+                disabled={!plainTextInput}
                 onClick={() => {
-                  if (keytInput === 0 || keytInput === "") {
+                  if (keyTextInput == 0 || !keyTextInput) {
                     toast.closeAll();
                     toast({
                       position: "top",
@@ -121,8 +126,11 @@ function Monoalphabetic() {
                       duration: 2000,
                       isClosable: true,
                     });
+                  } else {
+                    setResultText(
+                      shiftCipher(plainTextInput, keyTextInput, "decrypt")
+                    );
                   }
-                  setCtext(decrypt(pTextInput, keytInput));
                 }}
               >
                 Decrypt
@@ -137,7 +145,7 @@ function Monoalphabetic() {
                   cursor={"default"}
                   color={"white"}
                   bg={"gray.900"}
-                  value={cText}
+                  value={resultText}
                   fontSize={"xl"}
                 ></Textarea>
                 <InputRightElement
@@ -171,14 +179,14 @@ function Monoalphabetic() {
             color={"green.300"}
             mb={"5"}
           >
-            การเข้ารหัสแบบสับเปลี่ยน
+            การเข้ารหัสแบบซีซาร์
           </Text>
           <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
             <Image
               src={
-                "https://ctf101.org/cryptography/images/substitution-cipher.png"
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Caesar3.svg/400px-Caesar3.svg.png"
               }
-              alt={"Substitution cipher"}
+              alt={"Caesar Shift Cipher"}
             />
           </Box>
           <Box
@@ -188,12 +196,9 @@ function Monoalphabetic() {
             as="h1"
             lineHeight="tight"
           >
-            Monoalphabetic substitution คือการแทนที่ตัวอักษร 1
-            ตัวด้วยตัวอักษรอีก 1 ตัว ซึ่งตัวอักษรแต่ละตัวใน ciphertext จะถูก
-            decrypt ออกมาได้แค่ตัวอักษรชนิดเดียวเท่านั้น ตัวอย่างเช่น “a”
-            decrypt เป็น “g” ได้ แต่ “a” decrypt เป็นทั้ง “g” และ “h” ไม่ได้
-            เวลาใช้งานก็จะต้องมี table ไว้คอย map ระหว่าง ciphertext และ
-            plaintext
+            รหัสซีซาร์ (อังกฤษ: Caesar cipher) ในทางด้านวิทยาการเข้ารหัสลับ
+            หรือเป็นที่รู้จักกันในชื่ออื่นว่า shift cipher Caesar's code หรือ
+            Caesar shift เป็นเทคนิคการเข้ารหัสที่ง่ายและแพร่หลายที่สุด
           </Box>
         </Box>
       </Stack>
@@ -207,5 +212,4 @@ function Monoalphabetic() {
     </Flex>
   );
 }
-
-export default Monoalphabetic;
+export default ShipCipher;

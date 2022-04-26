@@ -2,11 +2,10 @@ import { Box } from "@chakra-ui/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Component/Home/Home";
-import Columnar from "./Component/Columnar/Columnar";
 import Monoalphabetic from "./Component/Monoalphabetic/Monoalphabetic";
 import Navbar from "./Component/Navbar/Navbar";
 import Rsa from "./Component/RSA/Rsa";
-import ShipCipher from "./Component/ShipCipher/ShipCipher";
+import ShiftCipher from "./Component/ShiftCipher/ShiftCipher";
 import Railfence from "./Component/Railfencecipher/Railfence";
 import ParticlesBackground from "./ParticleBackground";
 
@@ -21,7 +20,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="Monoalphabetic" element={<Monoalphabetic />} />
-          <Route exact path="ShipCipher" element={<ShipCipher />} />
+          <Route exact path="ShiftCipher" element={<ShiftCipher />} />
           <Route exact path="Railfence" element={<Railfence />} />
           <Route exact path="RSA" element={<Rsa />} />
         </Routes>
