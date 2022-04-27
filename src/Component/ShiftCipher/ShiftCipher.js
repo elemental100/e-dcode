@@ -15,7 +15,7 @@ import {
   useClipboard,
 } from "@chakra-ui/react";
 import { CopyIcon, CheckCircleIcon } from "@chakra-ui/icons";
-import shiftCipher from "../../services/shiftCipher";
+import shiftCipher from "./ShiftFunction";
 
 function ShipCipher() {
   const [resultText, setResultText] = useState("");

@@ -15,7 +15,7 @@ import {
   useClipboard,
 } from "@chakra-ui/react";
 import { CopyIcon, CheckCircleIcon } from "@chakra-ui/icons";
-import { encrypt, decrypt } from "../../services/railfenceCiper.js";
+import { encrypt, decrypt } from "./RailfenceFunction";
 function Railfence() {
   const [resultText, setResultText] = useState("");
   const [plainTextInput, setPlaintext] = useState("");

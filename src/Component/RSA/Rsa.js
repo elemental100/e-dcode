@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { CopyIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import bigInt from "big-integer";
-import { encrypt, decrypt } from "../../services/rsaCipher.js";
+import { encrypt, decrypt } from "./RsaFunction";
 function Rsa() {
   const [cText, setCtext] = useState("");
   const [decryptText, setDecryptTexttext] = useState("");

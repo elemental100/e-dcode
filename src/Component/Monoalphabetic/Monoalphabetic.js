@@ -15,7 +15,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { encrypt, decrypt } from "../../services/monoCipher.js";
+import { encrypt, decrypt } from "./MonoFunction";
 function Monoalphabetic() {
   const [cText, setCtext] = useState("");
   const [pTextInput, setPTextInput] = useState("");
