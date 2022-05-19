@@ -4,10 +4,18 @@ export function encrypt(plainText = "", keyText = 0) {
     for (let i = 0; i < plainText.length; i++) {
       let asciiText = plainText.charCodeAt(i);
       if (asciiText >= 65 && asciiText <= 90) {
-        let newT = ((asciiText - 65 + key) % 26) + 65;
+        let newTT = ((asciiText - 65 + key) % 26);
+        if(newTT < 0){
+          newTT += 26;
+        }
+        let newT = newTT + 65;
         arr.push(String.fromCharCode(newT));
       } else if (asciiText >= 97 && asciiText <= 122) {
-        let newT = ((asciiText - 97 + key) % 26) + 97;
+        let newTT = ((asciiText - 97 + key) % 26)
+        if(newTT < 0){
+          newTT += 26;
+        }
+        let newT =  newTT + 97;
         arr.push(String.fromCharCode(newT));
       } else {
         let newT = asciiText;
