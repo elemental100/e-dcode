@@ -57,7 +57,7 @@ function Railfence() {
             Rail fence Cipher
           </Text>
           <Box>
-            <Text fontSize={"2xl"}>Plain Text</Text>
+            <Text fontSize={"2xl"}>Plain Text/ Cipher Text</Text>
             <Stack name="inputHolder" spacing={2} direction={"column"}>
               <Textarea
                 h={{ base: "16px", md: "150px" }}

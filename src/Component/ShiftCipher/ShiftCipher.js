@@ -17,7 +17,7 @@ import {
 import { CopyIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import shiftCipher from "./ShiftFunction";
 
-function ShipCipher() {
+function ShiftCipher() {
   const [resultText, setResultText] = useState("");
   const [plainTextInput, setPlaintext] = useState("");
   const [keyTextInput, setKeyInput] = useState(0);
@@ -55,7 +55,7 @@ function ShipCipher() {
             color={"green.300"}
             mb={"5"}
           >
-            Caesar Cipher
+            Shift Cipher
           </Text>
           <Box>
             <Text fontSize={"2xl"}>Plain Text/ Cipher Text</Text>
@@ -179,7 +179,7 @@ function ShipCipher() {
             color={"green.300"}
             mb={"5"}
           >
-            การเข้ารหัสแบบซีซาร์
+            การเข้ารหัสแบบเลื่อน
           </Text>
           <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
             <Image
@@ -212,4 +212,4 @@ function ShipCipher() {
     </Flex>
   );
 }
-export default ShipCipher;
+export default ShiftCipher;
