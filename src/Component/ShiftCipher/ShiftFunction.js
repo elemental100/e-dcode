@@ -9,14 +9,24 @@ function shiftCipher(plainText, shift, typeValue) {
       var code = plainText.charCodeAt(i);
       if (typeValue === "encrypt") {
         if (code >= 65 && code <= 90) {
-          c = String.fromCharCode(mod(code - 65 + key, 26) + 65);
-        }if (code >= 97 && code <= 122) {
-          c = String.fromCharCode(mod(code - 97 + key, 26) + 97);
+          let ascii = mod(code - 65 + key, 26);
+          while (ascii < 0) {
+            ascii += 26;
+          }
+          c = String.fromCharCode(ascii + 65);
+        }
+        if (code >= 97 && code <= 122) {
+          let ascii = mod(code - 97 + key, 26);
+          while (ascii < 0) {
+            ascii += 26;
+          }
+          c = String.fromCharCode(ascii + 97);
         }
       } else if (typeValue === "decrypt") {
         if (code >= 65 && code <= 90) {
           c = String.fromCharCode(mod(code - 65 - key, 26) + 65);
-        }if (code >= 97 && code <= 122) {
+        }
+        if (code >= 97 && code <= 122) {
           c = String.fromCharCode(mod(code - 97 - key, 26) + 97);
         }
       }
